@@ -1,4 +1,5 @@
 @regression
+@errorScenarios
 
 Feature: To verify whether error scenarios are handled correctly
 

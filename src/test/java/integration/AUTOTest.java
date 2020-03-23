@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 
-//available tags @SmokeTest, @Regression @SystemTest
+//available tags @happFlow, @regression @errorScenarios
 @CucumberOptions(
         features = "src/test/resources/Features",
         glue = {"stepDef"},
