@@ -4,9 +4,9 @@ import com.jayway.restassured.response.Response;
 
 public class StateContainer {
 
-    public Response response;
-    public String manufacturer;
-    public String mainTypes;
-    public String builtDates;
+    public static Response response;
+    public static String manufacturer;
+    public static String mainTypes;
+    public static String builtDates;
 
 }

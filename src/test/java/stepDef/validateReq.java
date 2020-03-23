@@ -1,5 +1,6 @@
 package stepDef;
 
+import com.jayway.jsonpath.JsonPath;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -9,10 +10,10 @@ import integration.CommonActions;
 import integration.StateContainer;
 import org.junit.Assert;
 
-public class validateReq {
+import java.util.LinkedHashMap;
 
-    private StateContainer stateContainer = new StateContainer();
-    private CommonActions commonActions = new CommonActions();
+public class validateReq extends genericStep{
+
 
     @Given("^request is built with valid locale and wa_key$")
     public void requestIsBuiltWithValidLocaleAndWa_key() {
@@ -55,5 +56,19 @@ public class validateReq {
     @Then("^Response code should be \"([^\"]*)\"$")
     public void responseCodeShouldBe(String statusCode) {
         stateContainer.response.then().statusCode(Integer.parseInt(statusCode));
+    }
+
+    @Then("^response body format should be correct \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"  \"([^\"]*)\"$")
+    public void responseBodyFormatShouldBeCorrect(String page, String pageSize, String totalPageCount, String wkda)  {
+       }
+
+    @And("^\"([^\"]*)\" response body should have \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"  \"([^\"]*)\"$")
+    public void responseBodyShouldHave( String endpoint, String page, String pageSize, String totalPageCount, String wkda) {
+        System.out.println(stateContainer.response.getBody().asString());
+        Assert.assertTrue(endpoint+" does not have page in body",stateContainer.response.getBody().asString().contains(page));
+        Assert.assertTrue(endpoint+" does not have pageSize in body",stateContainer.response.getBody().asString().contains(pageSize));
+        Assert.assertTrue(endpoint+" does not have total page count in body",stateContainer.response.getBody().asString().contains(totalPageCount));
+        Assert.assertTrue(endpoint+" does not have wkda in body",stateContainer.response.getBody().asString().contains(wkda));
+
     }
 }

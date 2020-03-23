@@ -9,7 +9,8 @@ import org.junit.runner.RunWith;
 //available tags @SmokeTest, @Regression @SystemTest
 @CucumberOptions(
         features = "src/test/resources/Features",
-        tags = {"@regression","@~ignore"},
+        glue = {"stepDef"},
+        tags = {"@regression","~@ignore"},
         plugin ={ "pretty",
                 "junit:target/result.xml",
                 "html:target/cucumber"
